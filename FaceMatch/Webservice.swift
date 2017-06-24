@@ -31,29 +31,29 @@ enum Webservice {
   static let baseSocketURL = URL(string: "http://192.168.25.151:3000")!
   
   static func send(imageData: Data, completion: @escaping (Result<Any>) -> ()) {
-    let url = baseURL.appendingPathComponent("emotion")
+    let url = URL(string: "http://192.168.25.109:8080/emotion")!
     var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = HttpMethod.post.rawValue
     
     let boundary = "Boundary-\(UUID().uuidString)"
     urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-    urlRequest.httpBody = createBody(parameters: [:], boundary: boundary, data: imageData, mimeType: "image/jpg", filename: "face.jpg")
+    urlRequest.httpBody = createBody(parameters: [:], boundary: boundary, data: imageData, mimeType: "image/jpg", filename: "camera")
     
     URLSession.shared.dataTask(with: urlRequest) { response in
       print(response)
     }.resume()
   }
   
-  static func connect() {
-    let socket = SocketIOClient(socketURL: baseSocketURL, config: [.log(true), .forcePolling(true)])
-    socket.on(clientEvent: .connect) { data, ack in
-      print("socket connected")
-      socket.emit("event", "asdf")
-    }
-    
-    
-    socket.connect()
-  }
+//  static func connect() {
+//    let socket = SocketIOClient(socketURL: baseSocketURL, config: [.log(true), .forcePolling(true)])
+//    socket.on(clientEvent: .connect) { data, ack in
+//      print("socket connected")
+//      socket.emit("event", "asdf")
+//    }
+//    
+//    
+//    socket.connect()
+//  }
   
   private static func createBody(parameters: [String: String],
                   boundary: String,

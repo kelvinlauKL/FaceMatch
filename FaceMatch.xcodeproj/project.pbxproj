@@ -17,6 +17,7 @@
 		603B0F061EFED2D7003DA506 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F051EFED2D7003DA506 /* ScoreViewController.swift */; };
 		603B0F081EFED318003DA506 /* ScoreViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 603B0F071EFED318003DA506 /* ScoreViewController.storyboard */; };
 		603B0F0B1EFED7F0003DA506 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F0A1EFED7F0003DA506 /* PreviewView.swift */; };
+		603B0F0E1EFF12D5003DA506 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F0D1EFF12D5003DA506 /* UIImage+Resize.swift */; };
 		CF9BAB79002C22698B4F2F77 /* Pods_FaceMatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEB5095F4B3E7F67C25DE2B /* Pods_FaceMatch.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		603B0F051EFED2D7003DA506 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		603B0F071EFED318003DA506 /* ScoreViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScoreViewController.storyboard; sourceTree = "<group>"; };
 		603B0F0A1EFED7F0003DA506 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		603B0F0D1EFF12D5003DA506 /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		CFEB5095F4B3E7F67C25DE2B /* Pods_FaceMatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceMatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				603B0EE51EFED034003DA506 /* AppDelegate.swift */,
+				603B0F0C1EFF12CC003DA506 /* Extensions */,
 				603B0F091EFED7E2003DA506 /* Views */,
 				603B0EFA1EFED08E003DA506 /* Networking */,
 				603B0EF91EFED08A003DA506 /* Models */,
@@ -140,6 +143,14 @@
 				603B0F0A1EFED7F0003DA506 /* PreviewView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		603B0F0C1EFF12CC003DA506 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				603B0F0D1EFF12D5003DA506 /* UIImage+Resize.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		CD99576EBF56DCFD79BBDC2A /* Pods */ = {
@@ -284,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603B0F0E1EFF12D5003DA506 /* UIImage+Resize.swift in Sources */,
 				603B0EFC1EFED132003DA506 /* GameViewController.swift in Sources */,
 				603B0EE61EFED034003DA506 /* AppDelegate.swift in Sources */,
 				603B0F061EFED2D7003DA506 /* ScoreViewController.swift in Sources */,
@@ -451,6 +463,7 @@
 				603B0EF61EFED034003DA506 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

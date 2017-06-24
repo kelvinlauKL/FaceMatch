@@ -14,9 +14,18 @@ enum Emotion {
   var image: UIImage {
     switch self {
     case .happy:
-      return #imageLiteral(resourceName: "happy")
+      return #imageLiteral(resourceName: "happyface")
     case .sad:
-      return #imageLiteral(resourceName: "sad")
+      return #imageLiteral(resourceName: "sadface")
     }
+  }
+  
+  static var allValues: [Emotion] {
+    return [.happy, .sad]
+  }
+  
+  static var random: Emotion {
+    let randomNumber = Int(arc4random_uniform(100))
+    return allValues[randomNumber % allValues.count]
   }
 }
