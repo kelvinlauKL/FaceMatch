@@ -48,7 +48,10 @@ enum Webservice {
     let socket = SocketIOClient(socketURL: baseSocketURL, config: [.log(true), .forcePolling(true)])
     socket.on(clientEvent: .connect) { data, ack in
       print("socket connected")
+      socket.emit("event", "asdf")
     }
+    
+    
     socket.connect()
   }
   
