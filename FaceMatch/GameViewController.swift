@@ -50,7 +50,7 @@ extension GameViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCamera()
-    
+
   }
   
   private func setupCamera() {
@@ -65,7 +65,7 @@ extension GameViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     session.startRunning()
-    moveToFinish(bottomConstraintLeft) { print("complete") }
+    move(view: emotionViewLeft, from: CGPoint(x: 1000, y: 1000), to: finishLineView.center)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -81,6 +81,14 @@ extension GameViewController {
       constraint.constant = self.startConstant
       completion()
     })
+  }
+  
+  func move(view: UIView, from startPoint: CGPoint, to endPoint: CGPoint) {
+    let move = CABasicAnimation(keyPath: "position")
+    move.fromValue = [startPoint.x, startPoint.y]
+    move.toValue = [endPoint.x, endPoint.y]
+    move.duration = 2
+    view.layer.add(move, forKey: nil)
   }
 }
 
