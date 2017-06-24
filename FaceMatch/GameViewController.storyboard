@@ -4,7 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,12 +21,37 @@
                     <view key="view" contentMode="scaleToFill" id="703-Rz-emB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Py1-HV-i4W" customClass="PreviewView" customModule="FaceMatch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="200" width="375" height="467"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eF5-Eu-dhf">
+                                <rect key="frame" x="0.0" y="192" width="375" height="8"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="HDa-QL-bsG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Py1-HV-i4W" secondAttribute="trailing" id="7vr-Bz-A83"/>
+                            <constraint firstItem="eF5-Eu-dhf" firstAttribute="leading" secondItem="703-Rz-emB" secondAttribute="leading" id="Afg-Ge-SC1"/>
+                            <constraint firstAttribute="trailing" secondItem="eF5-Eu-dhf" secondAttribute="trailing" id="EZR-eX-nsO"/>
+                            <constraint firstItem="Py1-HV-i4W" firstAttribute="top" secondItem="eF5-Eu-dhf" secondAttribute="bottom" id="H6I-Vb-Dcg"/>
+                            <constraint firstItem="Py1-HV-i4W" firstAttribute="leading" secondItem="703-Rz-emB" secondAttribute="leading" id="Ogn-HQ-X15"/>
+                            <constraint firstItem="W1C-9T-zKU" firstAttribute="top" secondItem="Py1-HV-i4W" secondAttribute="bottom" id="bZf-wF-Yxb"/>
+                            <constraint firstItem="Py1-HV-i4W" firstAttribute="height" secondItem="703-Rz-emB" secondAttribute="height" multiplier="0.7" id="cDx-AY-ipy"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="previewView" destination="Py1-HV-i4W" id="MYs-f0-YRI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldo-Qe-8SL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="131"/>
+            <point key="canvasLocation" x="116" y="130.88455772113943"/>
         </scene>
     </scenes>
 </document>
