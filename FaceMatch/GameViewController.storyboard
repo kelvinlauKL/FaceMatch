@@ -61,6 +61,7 @@
                     <connections>
                         <outlet property="finishLineView" destination="eF5-Eu-dhf" id="tIF-eP-nWC"/>
                         <outlet property="previewView" destination="Py1-HV-i4W" id="MYs-f0-YRI"/>
+                        <outlet property="scoreLabel" destination="SXx-6O-jny" id="9nt-i9-nGW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldo-Qe-8SL" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -17,6 +17,10 @@ extension NSMutableData {
 }
 
 enum Webservice {
+  enum EmotionMatchFailure: Error {
+    case unknown
+  }
+  
   enum Result<T> {
     case success(T)
     case failure(Error)
@@ -30,7 +34,7 @@ enum Webservice {
   static let baseURL = URL(string: "https://192.168.25.109:8080")!
   static let baseSocketURL = URL(string: "http://192.168.25.151:3000")!
   
-  static func send(imageData: Data, completion: @escaping (Result<Any>) -> ()) {
+  static func send(imageData: Data, completion: @escaping (Result<Emotion>) -> ()) {
     let url = URL(string: "http://192.168.25.109:8080/emotion")!
     var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = HttpMethod.post.rawValue
@@ -43,8 +47,11 @@ enum Webservice {
       guard let data = data else { fatalError() }
       guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) else { fatalError() }
       guard let dict = jsonObject as? [String: Any] else { fatalError() }
-      print(dict)
-      
+      if let emoValue = dict["emotion"] as? String, let emotion = Emotion(rawValue: emoValue) {
+        return completion(.success(emotion))
+      } else {
+        return completion(.failure(EmotionMatchFailure.unknown))
+      }
     }.resume()
   }
   

@@ -11,6 +11,7 @@ import AVFoundation
 
 final class GameViewController: UIViewController {
   @IBOutlet fileprivate var finishLineView: UIView!
+  @IBOutlet fileprivate var scoreLabel: UILabel!
   
   @IBOutlet fileprivate var previewView: PreviewView! {
     didSet {
@@ -27,6 +28,13 @@ final class GameViewController: UIViewController {
   
   fileprivate let output = AVCapturePhotoOutput()
   fileprivate var timer: Timer?
+  
+  fileprivate var emotionsQueue = Queue<Emotion>()
+  fileprivate var score = 0 {
+    didSet {
+      scoreLabel.text = "\(score)"
+    }
+  }
   
   class func instantiate() -> GameViewController {
     let storyboard = UIStoryboard(name: "\(GameViewController.self)", bundle: nil)
@@ -78,7 +86,9 @@ extension GameViewController {
   }
   
   func spawnEmotion() {
-    let imageView = UIImageView(image: Emotion.random.image)
+    let emotion = Emotion.random
+    let imageView = UIImageView(image: emotion.image)
+    emotionsQueue.enqueue(emotion)
     view.addSubview(imageView)
     
     let randomDuration = TimeInterval(arc4random_uniform(2) + 1)
@@ -142,7 +152,15 @@ extension GameViewController: AVCapturePhotoCaptureDelegate {
     guard let resizedImageData = UIImageJPEGRepresentation(resizedImage, 0.5) else { fatalError() }
     Webservice.send(imageData: resizedImageData) { result in
       switch result {
-      case .success: break
+      case .success(let emotion):
+        guard let emotionMatch = self.emotionsQueue.dequeue() else { return }
+        if emotionMatch == emotion {
+          // matched emotions!
+          self.score += 1
+          
+        } else {
+          // missed emotions!
+        }
       case .failure: break
       }
     }

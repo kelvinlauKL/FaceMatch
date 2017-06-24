@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Emotion {
+enum Emotion: String {
   case happy, sad
   
   var image: UIImage {
