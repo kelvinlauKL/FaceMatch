@@ -16,6 +16,9 @@ final class AppDelegate: UIResponder {
 // MARK: - UIApplicationDelegate
 extension AppDelegate: UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = GameViewController.instantiate()
+    window?.makeKeyAndVisible()
     return true
   }
 }
