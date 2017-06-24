@@ -50,6 +50,8 @@ extension GameViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCamera()
+    
+    Webservice.connect()
 
   }
   
