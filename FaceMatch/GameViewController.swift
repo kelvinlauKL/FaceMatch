@@ -35,8 +35,8 @@ extension GameViewController {
   
   private func setupCamera() {
     
-    let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-    guard let input = try? AVCaptureDeviceInput(device: backCamera) else { fatalError("back camera not available.") }
+    let frontCamera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
+    guard let input = try? AVCaptureDeviceInput(device: frontCamera) else { fatalError("back camera not available.") }
     session.addInput(input)
     session.addOutput(output)
     previewView.session = session
