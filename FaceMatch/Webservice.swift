@@ -39,21 +39,14 @@ enum Webservice {
     urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
     urlRequest.httpBody = createBody(parameters: [:], boundary: boundary, data: imageData, mimeType: "image/jpg", filename: "camera")
     
-    URLSession.shared.dataTask(with: urlRequest) { response in
-      print(response)
+    URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
+      guard let data = data else { fatalError() }
+      guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) else { fatalError() }
+      guard let dict = jsonObject as? [String: Any] else { fatalError() }
+      print(dict)
+      
     }.resume()
   }
-  
-//  static func connect() {
-//    let socket = SocketIOClient(socketURL: baseSocketURL, config: [.log(true), .forcePolling(true)])
-//    socket.on(clientEvent: .connect) { data, ack in
-//      print("socket connected")
-//      socket.emit("event", "asdf")
-//    }
-//    
-//    
-//    socket.connect()
-//  }
   
   private static func createBody(parameters: [String: String],
                   boundary: String,

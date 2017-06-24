@@ -64,6 +64,7 @@ extension GameViewController {
   
   
   func move(view: UIView, from startPoint: CGPoint, to endPoint: CGPoint, duration: TimeInterval, completion: @escaping (UIView) -> ()) {
+    view.center = endPoint
     CATransaction.begin()
     CATransaction.setCompletionBlock {
       completion(view)
@@ -83,9 +84,43 @@ extension GameViewController {
     let randomDuration = TimeInterval(arc4random_uniform(2) + 1)
     let randomX = CGFloat(arc4random_uniform(UInt32(view.bounds.width)))
     move(view: imageView, from: CGPoint(x: randomX, y: view.bounds.height), to: finishLineView.center, duration: randomDuration) { [weak self] view in
-      view.removeFromSuperview()
       self?.capturePhoto()
+      self?.rotateAndScaleDown(view: view) { view in
+        view.removeFromSuperview()
+      }
     }
+  }
+  
+  func rotateAndScaleDown(view: UIView, completion: @escaping (UIView) -> ()) {
+    
+    
+    CATransaction.begin()
+    CATransaction.setCompletionBlock {
+      completion(view)
+    }
+    
+    let groupAnimation = CAAnimationGroup()
+    groupAnimation.beginTime = CACurrentMediaTime() + 0.5
+    groupAnimation.duration = 0.5
+    groupAnimation.fillMode = kCAFillModeBackwards
+
+    let scale = CABasicAnimation(keyPath: "transform.scale")
+    scale.fromValue = 1
+    scale.toValue = 0
+    scale.duration = 1
+    
+    let rotate = CABasicAnimation(keyPath: "transform.rotation")
+    rotate.fromValue = Double.pi / 4.0
+    rotate.toValue = 0.0
+    rotate.duration = 1
+    
+    let fade = CABasicAnimation(keyPath: "opacity")
+    fade.fromValue = 1
+    fade.toValue = 0
+    
+    groupAnimation.animations = [scale, rotate, fade]
+    view.layer.add(groupAnimation, forKey: nil)
+    CATransaction.commit()
   }
   
   private func capturePhoto() {
