@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,19 +34,53 @@
                                     <constraint firstAttribute="height" constant="8" id="HDa-QL-bsG"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sad" translatesAutoresizingMaskIntoConstraints="NO" id="fjr-nV-BCc" userLabel="image1">
+                                <rect key="frame" x="37" y="692" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="9MK-Ve-WAU"/>
+                                    <constraint firstAttribute="width" secondItem="fjr-nV-BCc" secondAttribute="height" multiplier="1:1" id="HWt-1p-QSc"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="oG8-I9-Vh3" userLabel="image2">
+                                <rect key="frame" x="162.5" y="599" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6Y5-9d-fpQ"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sad" translatesAutoresizingMaskIntoConstraints="NO" id="sb8-bK-yWw" userLabel="image3">
+                                <rect key="frame" x="286.5" y="599" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="LCG-TB-9jV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="W1C-9T-zKU" firstAttribute="top" secondItem="oG8-I9-Vh3" secondAttribute="bottom" constant="18" id="6ok-aQ-4hH"/>
+                            <constraint firstItem="oG8-I9-Vh3" firstAttribute="centerX" secondItem="703-Rz-emB" secondAttribute="centerX" id="7Fp-K0-iZW"/>
                             <constraint firstAttribute="trailing" secondItem="Py1-HV-i4W" secondAttribute="trailing" id="7vr-Bz-A83"/>
                             <constraint firstItem="eF5-Eu-dhf" firstAttribute="leading" secondItem="703-Rz-emB" secondAttribute="leading" id="Afg-Ge-SC1"/>
+                            <constraint firstItem="sb8-bK-yWw" firstAttribute="centerX" secondItem="703-Rz-emB" secondAttribute="centerX" multiplier="1.66" id="Ax0-fN-lGC"/>
+                            <constraint firstItem="sb8-bK-yWw" firstAttribute="width" secondItem="sb8-bK-yWw" secondAttribute="height" multiplier="1:1" id="D6o-r1-PxO"/>
+                            <constraint firstItem="fjr-nV-BCc" firstAttribute="top" secondItem="eF5-Eu-dhf" secondAttribute="top" constant="500" id="EPZ-D2-KyF"/>
                             <constraint firstAttribute="trailing" secondItem="eF5-Eu-dhf" secondAttribute="trailing" id="EZR-eX-nsO"/>
                             <constraint firstItem="Py1-HV-i4W" firstAttribute="top" secondItem="eF5-Eu-dhf" secondAttribute="bottom" id="H6I-Vb-Dcg"/>
                             <constraint firstItem="Py1-HV-i4W" firstAttribute="leading" secondItem="703-Rz-emB" secondAttribute="leading" id="Ogn-HQ-X15"/>
                             <constraint firstItem="W1C-9T-zKU" firstAttribute="top" secondItem="Py1-HV-i4W" secondAttribute="bottom" id="bZf-wF-Yxb"/>
                             <constraint firstItem="Py1-HV-i4W" firstAttribute="height" secondItem="703-Rz-emB" secondAttribute="height" multiplier="0.7" id="cDx-AY-ipy"/>
+                            <constraint firstItem="fjr-nV-BCc" firstAttribute="centerX" secondItem="703-Rz-emB" secondAttribute="centerX" multiplier="0.33" id="ho2-gp-pRw"/>
+                            <constraint firstItem="W1C-9T-zKU" firstAttribute="top" secondItem="sb8-bK-yWw" secondAttribute="bottom" constant="18" id="irS-kk-PE0"/>
+                            <constraint firstItem="oG8-I9-Vh3" firstAttribute="width" secondItem="oG8-I9-Vh3" secondAttribute="height" multiplier="1:1" id="mBW-hh-UtC"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraintCenter" destination="6ok-aQ-4hH" id="e5N-2O-dLg"/>
+                        <outlet property="bottomConstraintLeft" destination="EPZ-D2-KyF" id="rrW-lI-q9R"/>
+                        <outlet property="bottomConstraintRight" destination="irS-kk-PE0" id="BHT-QX-Azx"/>
+                        <outlet property="emotionViewCenter" destination="oG8-I9-Vh3" id="D43-hH-mtq"/>
+                        <outlet property="emotionViewLeft" destination="fjr-nV-BCc" id="CzY-pa-TKS"/>
+                        <outlet property="emotionViewRight" destination="sb8-bK-yWw" id="Xkc-Vv-Zd4"/>
+                        <outlet property="finishLineView" destination="eF5-Eu-dhf" id="tIF-eP-nWC"/>
                         <outlet property="previewView" destination="Py1-HV-i4W" id="MYs-f0-YRI"/>
                     </connections>
                 </viewController>
@@ -54,4 +89,8 @@
             <point key="canvasLocation" x="116" y="130.88455772113943"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="happy" width="600" height="600"/>
+        <image name="sad" width="300" height="300"/>
+    </resources>
 </document>
