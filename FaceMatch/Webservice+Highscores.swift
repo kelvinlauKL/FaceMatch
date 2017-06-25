@@ -23,24 +23,17 @@ extension Webservice: HighscoresAPI {
   func getHighscores(completion: @escaping ([Score]) -> ()) {
     
     // TODO: - add endpoint for highscores
-    let url = URL(string: "")!
+    let url = URL(string: "http://192.168.25.109:8080/leaderboard")!
   
     URLSession.shared.dataTask(with: url) { data, _, _ in
-      var scoresArray: [Score] = []
-      defer {
-        DispatchQueue.main.async {
-          completion(scoresArray)
-        }
+      DispatchQueue.main.async {
+        completion(self.scores(from: data))
       }
-      
-      let dict = self.response(from: data)
-      guard let scoresDictionaries = dict["scores"] as? [[String: Any]] else { return }
-      scoresArray = scoresDictionaries.map(Score.init)
     }.resume()
   }
   
-  func postHighscore(name: String, score: Int, completion: @escaping (Result<Score>) -> ()) {
-    let url = URL(string: "")!
+  func postHighscore(name: String, score: Int, completion: @escaping ([Score]) -> ()) {
+    let url = URL(string: "http://192.168.25.109:8080/leaderboard")!
     
     var request = URLRequest(url: url)
     request.httpMethod = HttpMethod.post.rawValue
@@ -50,12 +43,16 @@ extension Webservice: HighscoresAPI {
     request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: [])
     
     URLSession.shared.dataTask(with: request) { data, _, _ in
-      let dict = self.response(from: data)
-      let score = Score(dict: dict)
-      
       DispatchQueue.main.async {
-        completion(.success(score))
+        completion(self.scores(from: data))
       }
     }.resume()
+  }
+  
+  private func scores(from data: Data?) -> [Score] {
+    guard let data = data else { return [] }
+    guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) else { return [] }
+    guard let dicts = jsonObject as? [[String: Any]] else { return [] }
+    return dicts.map(Score.init)
   }
 }

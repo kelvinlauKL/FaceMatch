@@ -103,7 +103,7 @@ extension GameViewController {
   func spawnEmotion() {
     guard numberOfSpawns < maxSpawns else {
       let accuracy = Int((Double(correct) / Double(maxSpawns)) * 100)
-      let highscoresVC = HighScoresViewController.instantiate(score: score, accuracy: accuracy, webservice: FakeWebservice(), onComplete: { [weak self] vc in
+      let highscoresVC = HighScoresViewController.instantiate(score: score, accuracy: accuracy, webservice: Webservice(), onComplete: { [weak self] vc in
         self?.resetGame()
         vc.dismiss(animated: true, completion: nil)
       })

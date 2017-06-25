@@ -64,17 +64,11 @@ extension HighScoresViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: HighScoresReusableView.reuseIdentifier, for: indexPath) as? HighScoresReusableView else { fatalError() }
     header.configure(score: score, accuracy: accuracy, onSubmit: { [weak self] name, score in
-      self?.webservice.postHighscore(name: name, score: score) { [weak self] result in
-        guard case .success(let score) = result else { fatalError("Wat") }
-        self?.add(score: score)
+      self?.webservice.postHighscore(name: name, score: score) { [weak self] scores in
+        self?.highscores = scores
       }
     })
     return header
-  }
-  
-  // update the ui with the new score
-  func add(score: Score) {
-    
   }
 }
 

@@ -28,8 +28,8 @@ extension FakeWebservice: HighscoresAPI {
     completion(scores)
   }
   
-  func postHighscore(name: String, score: Int, completion: @escaping (Result<Score>) -> ()) {
-    completion(.success(Score(name: name, score: score)))
+  func postHighscore(name: String, score: Int, completion: @escaping ([Score]) -> ()) {
+    completion([Score(name: name, score: score)])
   }
 }
 

@@ -17,13 +17,19 @@ enum Emotion: String {
       return #imageLiteral(resourceName: "happyface")
     case .sad:
       return #imageLiteral(resourceName: "sadface")
-    default:
-      fatalError()
+    case .angry:
+      return #imageLiteral(resourceName: "angryface")
+    case .fear:
+      return #imageLiteral(resourceName: "fearface")
+    case .neutral:
+      return #imageLiteral(resourceName: "neutralface")
+    case .surprise:
+      return #imageLiteral(resourceName: "surprisedface")
     }
   }
     
   static var allValues: [Emotion] {
-    return [.happy, .sad]
+    return [.happy, .sad, .angry, .fear, .neutral, .surprise]
   }
   
   static var random: Emotion {
