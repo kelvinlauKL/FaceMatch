@@ -10,8 +10,14 @@ import UIKit
 import AVFoundation
 
 final class GameViewController: UIViewController {
+  enum Result {
+    case hit(Emotion)
+    case miss(Emotion)
+  }
+  
   @IBOutlet fileprivate var finishLineView: UIView!
   @IBOutlet fileprivate var scoreLabel: UILabel!
+  @IBOutlet fileprivate var hitImageView: UIImageView!
   
   @IBOutlet fileprivate var previewView: PreviewView! {
     didSet {
@@ -36,6 +42,10 @@ final class GameViewController: UIViewController {
     }
   }
   
+  fileprivate var numberOfSpawns = 0
+  
+  fileprivate var correct = 0
+  
   class func instantiate() -> GameViewController {
     let storyboard = UIStoryboard(name: "\(GameViewController.self)", bundle: nil)
     return storyboard.instantiateInitialViewController() as! GameViewController
@@ -47,7 +57,8 @@ extension GameViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCamera()
-    timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(spawnEmotion), userInfo: nil, repeats: true)
+    
+    resetGame()
   }
   
   private func setupCamera() {
@@ -86,6 +97,18 @@ extension GameViewController {
   }
   
   func spawnEmotion() {
+    guard numberOfSpawns < 10 else {
+      let alertController = UIAlertController(title: "Round Over!", message: "You've got a score of \(score), with an accuracy of \(Double(correct) / 20.0 * 100.0)", preferredStyle: .alert)
+      let goAgainAction = UIAlertAction(title: "Go Again!", style: .default, handler: { _ in
+        self.resetGame()
+      })
+      
+      alertController.addAction(goAgainAction)
+      return present(alertController, animated: true) {
+        self.timer?.invalidate()
+      }
+    }
+    numberOfSpawns += 1
     let emotion = Emotion.random
     let imageView = UIImageView(image: emotion.image)
     emotionsQueue.enqueue(emotion)
@@ -99,6 +122,14 @@ extension GameViewController {
         view.removeFromSuperview()
       }
     }
+  }
+  
+  func resetGame() {
+    score = 0
+    correct = 0
+    numberOfSpawns = 0
+    
+    timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(spawnEmotion), userInfo: nil, repeats: true)
   }
   
   func rotateAndScaleDown(view: UIView, completion: @escaping (UIView) -> ()) {
@@ -150,18 +181,20 @@ extension GameViewController: AVCapturePhotoCaptureDelegate {
     guard let image = UIImage(data: imageData) else { fatalError() }
     let resizedImage = UIImage.resizedImage(image: image, targetSize: CGSize(width: 400, height: 400))
     guard let resizedImageData = UIImageJPEGRepresentation(resizedImage, 0.5) else { fatalError() }
-    Webservice.send(imageData: resizedImageData) { result in
+    
+    Webservice.send(imageData: resizedImageData, emotion: nil) { result in
       switch result {
-      case .success(let emotion):
+      case .success(let (emotion, score)):
         guard let emotionMatch = self.emotionsQueue.dequeue() else { return }
         if emotionMatch == emotion {
-          // matched emotions!
-          self.score += 1
-          
+          self.hitImageView.isHidden = false
+          self.correct += 1
         } else {
-          // missed emotions!
+          print("wrong matcH")
+          self.hitImageView.isHidden = true
         }
-      case .failure: break
+        self.score += score
+      case .failure: self.hitImageView.isHidden = true
       }
     }
   }

@@ -34,28 +34,37 @@ enum Webservice {
   static let baseURL = URL(string: "https://192.168.25.109:8080")!
   static let baseSocketURL = URL(string: "http://192.168.25.151:3000")!
   
-  static func send(imageData: Data, completion: @escaping (Result<Emotion>) -> ()) {
+  static func send(imageData: Data, emotion: Emotion?, completion: @escaping (Result<(Emotion, Int)>) -> ()) {
     let url = URL(string: "http://192.168.25.109:8080/emotion")!
     var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = HttpMethod.post.rawValue
     
     let boundary = "Boundary-\(UUID().uuidString)"
     urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-    urlRequest.httpBody = createBody(parameters: [:], boundary: boundary, data: imageData, mimeType: "image/jpg", filename: "camera")
+    
+    var params: [String: Any] = [:]
+    if let emotion = emotion {
+      params["emotion"] = emotion.rawValue
+    }
+    urlRequest.httpBody = createBody(parameters: params, boundary: boundary, data: imageData, mimeType: "image/jpg", filename: "camera")
     
     URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
       guard let data = data else { fatalError() }
       guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) else { fatalError() }
       guard let dict = jsonObject as? [String: Any] else { fatalError() }
-      if let emoValue = dict["emotion"] as? String, let emotion = Emotion(rawValue: emoValue) {
-        return completion(.success(emotion))
-      } else {
-        return completion(.failure(EmotionMatchFailure.unknown))
+      print(dict)
+      
+      DispatchQueue.main.async {
+        if let emoValue = dict["emotion"] as? String, let emotion = Emotion(rawValue: emoValue), let score = dict["score"] as? Int {
+          return completion(.success((emotion, score)))
+        } else {
+          return completion(.failure(EmotionMatchFailure.unknown))
+        }
       }
     }.resume()
   }
   
-  private static func createBody(parameters: [String: String],
+  private static func createBody(parameters: [String: Any],
                   boundary: String,
                   data: Data,
                   mimeType: String,

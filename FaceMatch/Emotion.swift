@@ -9,7 +9,7 @@
 import UIKit
 
 enum Emotion: String {
-  case happy, sad
+  case happy, sad, angry, fear, neutral, surprise
   
   var image: UIImage {
     switch self {
@@ -17,9 +17,11 @@ enum Emotion: String {
       return #imageLiteral(resourceName: "happyface")
     case .sad:
       return #imageLiteral(resourceName: "sadface")
+    default:
+      fatalError()
     }
   }
-  
+    
   static var allValues: [Emotion] {
     return [.happy, .sad]
   }

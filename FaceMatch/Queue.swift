@@ -16,4 +16,8 @@ struct Queue<T> {
   mutating func dequeue() -> T? {
     return array.removeFirst()
   }
+  
+  var first: T? {
+    return array.first
+  }
 }
