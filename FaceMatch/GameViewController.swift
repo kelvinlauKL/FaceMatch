@@ -42,6 +42,7 @@ final class GameViewController: UIViewController {
     }
   }
   
+  fileprivate var maxSpawns = 10
   fileprivate var numberOfSpawns = 0
   
   fileprivate var correct = 0
@@ -97,8 +98,8 @@ extension GameViewController {
   }
   
   func spawnEmotion() {
-    guard numberOfSpawns < 10 else {
-      let alertController = UIAlertController(title: "Round Over!", message: "You've got a score of \(score), with an accuracy of \(Double(correct) / 20.0 * 100.0)", preferredStyle: .alert)
+    guard numberOfSpawns < maxSpawns else {
+      let alertController = UIAlertController(title: "Round Over!", message: "You've got a score of \(score), with an accuracy of \(Int((Double(correct) / Double(maxSpawns)) * 100)) %", preferredStyle: .alert)
       let goAgainAction = UIAlertAction(title: "Go Again!", style: .default, handler: { _ in
         self.resetGame()
       })
@@ -187,14 +188,17 @@ extension GameViewController: AVCapturePhotoCaptureDelegate {
       case .success(let (emotion, score)):
         guard let emotionMatch = self.emotionsQueue.dequeue() else { return }
         if emotionMatch == emotion {
-          self.hitImageView.isHidden = false
+          self.hitImageView.alpha = 1
+          UIView.animate(withDuration: 1.0, animations: {
+            self.hitImageView.alpha = 0
+          })
           self.correct += 1
         } else {
           print("wrong matcH")
-          self.hitImageView.isHidden = true
+          self.hitImageView.alpha = 0
         }
         self.score += score
-      case .failure: self.hitImageView.isHidden = true
+      case .failure: self.hitImageView.alpha = 0
       }
     }
   }

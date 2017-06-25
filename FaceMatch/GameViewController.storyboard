@@ -46,7 +46,7 @@
                                     <constraint firstAttribute="height" constant="8" id="HDa-QL-bsG"/>
                                 </constraints>
                             </view>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hit" translatesAutoresizingMaskIntoConstraints="NO" id="tat-XU-Oeq">
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hit" translatesAutoresizingMaskIntoConstraints="NO" id="tat-XU-Oeq">
                                 <rect key="frame" x="38" y="-9" width="298" height="285"/>
                             </imageView>
                         </subviews>
