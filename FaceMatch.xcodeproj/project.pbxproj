@@ -14,8 +14,6 @@
 		603B0EFE1EFED149003DA506 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0EFD1EFED149003DA506 /* Emotion.swift */; };
 		603B0F001EFED184003DA506 /* GameViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 603B0EFF1EFED184003DA506 /* GameViewController.storyboard */; };
 		603B0F021EFED1CF003DA506 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F011EFED1CF003DA506 /* Webservice.swift */; };
-		603B0F061EFED2D7003DA506 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F051EFED2D7003DA506 /* ScoreViewController.swift */; };
-		603B0F081EFED318003DA506 /* ScoreViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 603B0F071EFED318003DA506 /* ScoreViewController.storyboard */; };
 		603B0F0B1EFED7F0003DA506 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F0A1EFED7F0003DA506 /* PreviewView.swift */; };
 		603B0F0E1EFF12D5003DA506 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F0D1EFF12D5003DA506 /* UIImage+Resize.swift */; };
 		603B0F101EFF2B46003DA506 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F0F1EFF2B46003DA506 /* Queue.swift */; };
@@ -34,8 +32,6 @@
 		603B0EFD1EFED149003DA506 /* Emotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		603B0EFF1EFED184003DA506 /* GameViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GameViewController.storyboard; sourceTree = "<group>"; };
 		603B0F011EFED1CF003DA506 /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
-		603B0F051EFED2D7003DA506 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
-		603B0F071EFED318003DA506 /* ScoreViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScoreViewController.storyboard; sourceTree = "<group>"; };
 		603B0F0A1EFED7F0003DA506 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		603B0F0D1EFF12D5003DA506 /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		603B0F0F1EFF2B46003DA506 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -99,7 +95,6 @@
 		603B0EF81EFED084003DA506 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				603B0F041EFED2C6003DA506 /* ScoreVC */,
 				603B0F031EFED2BF003DA506 /* GameVC */,
 			);
 			name = Controllers;
@@ -129,15 +124,6 @@
 				603B0EFF1EFED184003DA506 /* GameViewController.storyboard */,
 			);
 			name = GameVC;
-			sourceTree = "<group>";
-		};
-		603B0F041EFED2C6003DA506 /* ScoreVC */ = {
-			isa = PBXGroup;
-			children = (
-				603B0F051EFED2D7003DA506 /* ScoreViewController.swift */,
-				603B0F071EFED318003DA506 /* ScoreViewController.storyboard */,
-			);
-			name = ScoreVC;
 			sourceTree = "<group>";
 		};
 		603B0F091EFED7E2003DA506 /* Views */ = {
@@ -236,7 +222,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				603B0F081EFED318003DA506 /* ScoreViewController.storyboard in Resources */,
 				603B0F001EFED184003DA506 /* GameViewController.storyboard in Resources */,
 				603B0EF01EFED034003DA506 /* LaunchScreen.storyboard in Resources */,
 				603B0EED1EFED034003DA506 /* Assets.xcassets in Resources */,
@@ -302,7 +287,6 @@
 				603B0EFC1EFED132003DA506 /* GameViewController.swift in Sources */,
 				603B0EE61EFED034003DA506 /* AppDelegate.swift in Sources */,
 				603B0F101EFF2B46003DA506 /* Queue.swift in Sources */,
-				603B0F061EFED2D7003DA506 /* ScoreViewController.swift in Sources */,
 				603B0F021EFED1CF003DA506 /* Webservice.swift in Sources */,
 				603B0EFE1EFED149003DA506 /* Emotion.swift in Sources */,
 				603B0F0B1EFED7F0003DA506 /* PreviewView.swift in Sources */,
