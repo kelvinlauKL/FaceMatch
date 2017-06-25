@@ -47,9 +47,12 @@ final class GameViewController: UIViewController {
   
   fileprivate var correct = 0
   
-  class func instantiate() -> GameViewController {
+  fileprivate var webservice: GameplayAPI!
+  class func instantiate(service: GameplayAPI) -> GameViewController {
     let storyboard = UIStoryboard(name: "\(GameViewController.self)", bundle: nil)
-    return storyboard.instantiateInitialViewController() as! GameViewController
+    let vc = storyboard.instantiateInitialViewController() as! GameViewController
+    vc.webservice = service
+    return vc
   }
 }
 
@@ -174,16 +177,10 @@ extension GameViewController {
 // MARK: - AVCapturePhotoCaptureDelegate
 extension GameViewController: AVCapturePhotoCaptureDelegate {
   func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-    print("capturing")
     guard let sampleBuffer = photoSampleBuffer else { fatalError("sample buffer was nil") }
+    let imageData = UIImage.data(from: sampleBuffer, imageSize: CGSize(width: 400, height: 400))
     
-    guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: nil) else { fatalError("could not get image data from sample buffer.") }
-
-    guard let image = UIImage(data: imageData) else { fatalError() }
-    let resizedImage = UIImage.resizedImage(image: image, targetSize: CGSize(width: 400, height: 400))
-    guard let resizedImageData = UIImageJPEGRepresentation(resizedImage, 0.5) else { fatalError() }
-    
-    Webservice.send(imageData: resizedImageData, emotion: nil) { result in
+    webservice.send(imageData: imageData) { result in
       switch result {
       case .success(let (emotion, score)):
         guard let emotionMatch = self.emotionsQueue.dequeue() else { return }

@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import AVFoundation
 
 extension UIImage {
-  static func resizedImage(image: UIImage, targetSize: CGSize) -> UIImage {
+  static func data(from buffer: CMSampleBuffer, imageSize: CGSize) -> Data {
+    guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil) else { fatalError("Could not get image data from sample buffer.") }
+    guard let image = UIImage(data: imageData) else { fatalError() }
+    let resizedImage = self.resizedImage(image, targetSize: imageSize)
+    guard let resizedImageData = UIImageJPEGRepresentation(resizedImage, 0.5) else { fatalError() }
+    return resizedImageData
+  }
+  
+  private static func resizedImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
     let size = image.size
     
     let widthRatio  = targetSize.width  / image.size.width
