@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SocketIO
 
 enum Result<T> {
   case success(T)
