@@ -9,19 +9,24 @@
 import UIKit
 
 final class HighScoresViewController: UIViewController {
-  @IBOutlet fileprivate var tableView: UITableView!
+  @IBOutlet fileprivate var collectionView: UICollectionView!
   
   fileprivate var highscores: [Score] = [] {
     didSet {
-      tableView.reloadData()
+      collectionView.reloadData()
     }
   }
   fileprivate var webservice: HighscoresAPI!
   
-  class func instantiate(webservice: HighscoresAPI) -> HighScoresViewController {
+  fileprivate var score = 0
+  fileprivate var accuracy = 0
+  
+  class func instantiate(score: Int, accuracy: Int, webservice: HighscoresAPI) -> HighScoresViewController {
     let storyboard = UIStoryboard(name: "\(HighScoresViewController.self)", bundle: nil)
     let highscoresVC = storyboard.instantiateInitialViewController() as! HighScoresViewController
     highscoresVC.webservice = webservice
+    highscoresVC.score = score
+    highscoresVC.accuracy = accuracy
     return highscoresVC
   }
 }
@@ -34,13 +39,39 @@ extension HighScoresViewController {
     webservice.getHighscores { self.highscores = $0 }
   }
 }
-// MARK: - UITableViewDataSource
-extension HighScoresViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    return UITableViewCell()
+
+// MARK: - UICollectionViewDataSource
+extension HighScoresViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScoreCell.reuseIdentifier, for: indexPath) as? ScoreCell else { fatalError() }
+    cell.score = highscores[indexPath.row]
+    return cell
   }
   
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return highscores.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: HighScoresReusableView.reuseIdentifier, for: indexPath) as? HighScoresReusableView else { fatalError() }
+    header.configure(score: score, accuracy: accuracy, onSubmit: { [weak self] name, score in
+      self?.webservice.postHighscore(name: name, score: score) { [weak self] result in
+        guard case .success(let score) = result else { fatalError("Wat") }
+        self?.add(score: score)
+      }
+    })
+    return header
+  }
+  
+  // update the ui with the new score
+  func add(score: Score) {
+    
+  }
+}
+
+// MARK: - UICollectionViewDelegate
+extension HighScoresViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.frame.width, height: 44)
   }
 }

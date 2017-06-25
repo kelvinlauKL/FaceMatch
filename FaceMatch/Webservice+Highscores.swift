@@ -38,4 +38,24 @@ extension Webservice: HighscoresAPI {
       scoresArray = scoresDictionaries.map(Score.init)
     }.resume()
   }
+  
+  func postHighscore(name: String, score: Int, completion: @escaping (Result<Score>) -> ()) {
+    let url = URL(string: "")!
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = HttpMethod.post.rawValue
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    let params: [String: Any] = ["name": name, "score": score]
+    request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: [])
+    
+    URLSession.shared.dataTask(with: request) { data, _, _ in
+      let dict = self.response(from: data)
+      let score = Score(dict: dict)
+      
+      DispatchQueue.main.async {
+        completion(.success(score))
+      }
+    }.resume()
+  }
 }

@@ -19,13 +19,15 @@
 		603B0F101EFF2B46003DA506 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B0F0F1EFF2B46003DA506 /* Queue.swift */; };
 		60CF1D681EFFBF4100152C5A /* HighScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D671EFFBF4100152C5A /* HighScoresViewController.swift */; };
 		60CF1D6A1EFFBF4B00152C5A /* HighScoresViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60CF1D691EFFBF4B00152C5A /* HighScoresViewController.storyboard */; };
-		60CF1D6C1EFFBF9300152C5A /* HighScoresReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D6B1EFFBF9300152C5A /* HighScoresReusableView.swift */; };
 		60CF1D6E1EFFC28200152C5A /* RoundableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D6D1EFFC28200152C5A /* RoundableView.swift */; };
 		60CF1D701EFFC7A700152C5A /* Webservice+Highscores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D6F1EFFC7A700152C5A /* Webservice+Highscores.swift */; };
 		60CF1D721EFFC7E200152C5A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D711EFFC7E200152C5A /* Score.swift */; };
 		60CF1D7A1EFFCF4B00152C5A /* HighscoresAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D791EFFCF4B00152C5A /* HighscoresAPI.swift */; };
 		60CF1D7C1EFFCFAC00152C5A /* GameplayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D7B1EFFCFAC00152C5A /* GameplayAPI.swift */; };
 		60CF1D7E1EFFD03300152C5A /* Webservice+GameplayAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D7D1EFFD03300152C5A /* Webservice+GameplayAPI.swift */; };
+		60CF1D801EFFD22300152C5A /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D7F1EFFD22300152C5A /* ScoreCell.swift */; };
+		60CF1D821EFFD30400152C5A /* FakeWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D811EFFD30400152C5A /* FakeWebservice.swift */; };
+		60CF1D841EFFD91000152C5A /* HighScoresReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D831EFFD91000152C5A /* HighScoresReusableView.swift */; };
 		CF9BAB79002C22698B4F2F77 /* Pods_FaceMatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEB5095F4B3E7F67C25DE2B /* Pods_FaceMatch.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,13 +48,15 @@
 		603B0F0F1EFF2B46003DA506 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		60CF1D671EFFBF4100152C5A /* HighScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoresViewController.swift; sourceTree = "<group>"; };
 		60CF1D691EFFBF4B00152C5A /* HighScoresViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HighScoresViewController.storyboard; sourceTree = "<group>"; };
-		60CF1D6B1EFFBF9300152C5A /* HighScoresReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoresReusableView.swift; sourceTree = "<group>"; };
 		60CF1D6D1EFFC28200152C5A /* RoundableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundableView.swift; sourceTree = "<group>"; };
 		60CF1D6F1EFFC7A700152C5A /* Webservice+Highscores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Webservice+Highscores.swift"; sourceTree = "<group>"; };
 		60CF1D711EFFC7E200152C5A /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		60CF1D791EFFCF4B00152C5A /* HighscoresAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighscoresAPI.swift; sourceTree = "<group>"; };
 		60CF1D7B1EFFCFAC00152C5A /* GameplayAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayAPI.swift; sourceTree = "<group>"; };
 		60CF1D7D1EFFD03300152C5A /* Webservice+GameplayAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Webservice+GameplayAPI.swift"; sourceTree = "<group>"; };
+		60CF1D7F1EFFD22300152C5A /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCell.swift; sourceTree = "<group>"; };
+		60CF1D811EFFD30400152C5A /* FakeWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeWebservice.swift; sourceTree = "<group>"; };
+		60CF1D831EFFD91000152C5A /* HighScoresReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoresReusableView.swift; sourceTree = "<group>"; };
 		CFEB5095F4B3E7F67C25DE2B /* Pods_FaceMatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceMatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -132,6 +136,7 @@
 		603B0EFA1EFED08E003DA506 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				60CF1D811EFFD30400152C5A /* FakeWebservice.swift */,
 				60CF1D781EFFCF3500152C5A /* APIs */,
 				603B0F011EFED1CF003DA506 /* Webservice.swift */,
 				60CF1D7D1EFFD03300152C5A /* Webservice+GameplayAPI.swift */,
@@ -169,9 +174,10 @@
 		60CF1D661EFFBF2F00152C5A /* HighScoresVC */ = {
 			isa = PBXGroup;
 			children = (
-				60CF1D6B1EFFBF9300152C5A /* HighScoresReusableView.swift */,
 				60CF1D671EFFBF4100152C5A /* HighScoresViewController.swift */,
 				60CF1D691EFFBF4B00152C5A /* HighScoresViewController.storyboard */,
+				60CF1D7F1EFFD22300152C5A /* ScoreCell.swift */,
+				60CF1D831EFFD91000152C5A /* HighScoresReusableView.swift */,
 			);
 			name = HighScoresVC;
 			sourceTree = "<group>";
@@ -327,15 +333,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60CF1D6C1EFFBF9300152C5A /* HighScoresReusableView.swift in Sources */,
 				60CF1D6E1EFFC28200152C5A /* RoundableView.swift in Sources */,
 				60CF1D7A1EFFCF4B00152C5A /* HighscoresAPI.swift in Sources */,
 				603B0F0E1EFF12D5003DA506 /* UIImage+Resize.swift in Sources */,
 				603B0EFC1EFED132003DA506 /* GameViewController.swift in Sources */,
 				603B0EE61EFED034003DA506 /* AppDelegate.swift in Sources */,
+				60CF1D821EFFD30400152C5A /* FakeWebservice.swift in Sources */,
+				60CF1D801EFFD22300152C5A /* ScoreCell.swift in Sources */,
 				60CF1D701EFFC7A700152C5A /* Webservice+Highscores.swift in Sources */,
 				603B0F101EFF2B46003DA506 /* Queue.swift in Sources */,
 				603B0F021EFED1CF003DA506 /* Webservice.swift in Sources */,
+				60CF1D841EFFD91000152C5A /* HighScoresReusableView.swift in Sources */,
 				603B0EFE1EFED149003DA506 /* Emotion.swift in Sources */,
 				60CF1D7E1EFFD03300152C5A /* Webservice+GameplayAPI.swift in Sources */,
 				60CF1D7C1EFFCFAC00152C5A /* GameplayAPI.swift in Sources */,

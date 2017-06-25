@@ -30,5 +30,4 @@ struct Webservice {
     guard let dict = jsonObject as? [String: Any] else { fatalError("Better check if the backend is returning key-value pairs.") }
     return dict
   }
-
 }

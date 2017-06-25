@@ -10,6 +10,11 @@ struct Score {
   let name: String
   let score: Int
   
+  init(name: String, score: Int) {
+    self.name = name
+    self.score = score
+  }
+  
   init(dict: [String: Any]) {
     name = dict["name"] as! String
     score = dict["score"] as! Int

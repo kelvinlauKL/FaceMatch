@@ -17,7 +17,7 @@ final class AppDelegate: UIResponder {
 extension AppDelegate: UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = GameViewController.instantiate(service: Webservice())
+    window?.rootViewController = GameViewController.instantiate(service: FakeWebservice())
     window?.makeKeyAndVisible()
     return true
   }

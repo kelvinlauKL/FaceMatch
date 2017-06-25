@@ -8,4 +8,5 @@
 
 protocol HighscoresAPI {
   func getHighscores(completion: @escaping ([Score]) -> ())
+  func postHighscore(name: String, score: Int, completion: @escaping (Result<Score>) -> ())
 }
