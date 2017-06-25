@@ -10,6 +10,13 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baskerville.ttc">
+            <string>Baskerville</string>
+            <string>Baskerville-Bold</string>
+            <string>Baskerville-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--High Scores View Controller-->
         <scene sceneID="ee3-pP-cOV">
@@ -19,14 +26,14 @@
                         <viewControllerLayoutGuide type="top" id="BLr-qV-q9f"/>
                         <viewControllerLayoutGuide type="bottom" id="QUo-Gt-CNy"/>
                     </layoutGuides>
-                    <view key="view" alpha="0.90000000000000002" contentMode="scaleToFill" id="Ged-ZY-65D">
+                    <view key="view" contentMode="scaleToFill" id="Ged-ZY-65D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAb-85-FKd" customClass="RoundableView" customModule="FaceMatch" customModuleProvider="target">
                                 <rect key="frame" x="38" y="100.5" width="300" height="466.5"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zfY-xL-yvh">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zfY-xL-yvh">
                                         <rect key="frame" x="0.0" y="44" width="300" height="422.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sDa-Wn-kkQ">
@@ -126,7 +133,7 @@
                                                             <rect key="frame" x="225" y="0.0" width="59" height="32"/>
                                                             <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="17"/>
                                                             <state key="normal" title="Submit">
-                                                                <color key="titleColor" red="0.69411764710000001" green="0.97254901959999995" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="titleColor" red="0.91752624510000003" green="0.81021939359999995" blue="0.58934694639999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="submitTapped" destination="tPy-HX-cYQ" eventType="touchUpInside" id="LGz-4f-ktw"/>
@@ -208,13 +215,45 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4k0-es-eqB" customClass="RoundableView" customModule="FaceMatch" customModuleProvider="target">
+                                <rect key="frame" x="38" y="575" width="300" height="49"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyS-U4-aas">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="49"/>
+                                        <color key="backgroundColor" red="0.58114649531965334" green="0.92598468198371153" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="17"/>
+                                        <state key="normal" title="PLAY AGAIN">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playAgainTapped" destination="jmt-RP-4Ww" eventType="touchUpInside" id="cEp-dK-I7T"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="9OX-gV-yb1"/>
+                                    <constraint firstItem="jyS-U4-aas" firstAttribute="leading" secondItem="4k0-es-eqB" secondAttribute="leading" id="Ebe-ht-VVk"/>
+                                    <constraint firstAttribute="trailing" secondItem="jyS-U4-aas" secondAttribute="trailing" id="JTe-AK-AJR"/>
+                                    <constraint firstAttribute="bottom" secondItem="jyS-U4-aas" secondAttribute="bottom" id="TYn-FJ-KML"/>
+                                    <constraint firstItem="jyS-U4-aas" firstAttribute="top" secondItem="4k0-es-eqB" secondAttribute="top" id="wWd-8I-pAJ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="FAb-85-FKd" firstAttribute="centerY" secondItem="Ged-ZY-65D" secondAttribute="centerY" id="DtN-4j-DHa"/>
+                            <constraint firstItem="4k0-es-eqB" firstAttribute="top" secondItem="zfY-xL-yvh" secondAttribute="bottom" constant="8" id="Kyc-wY-yWn"/>
                             <constraint firstItem="FAb-85-FKd" firstAttribute="width" secondItem="Ged-ZY-65D" secondAttribute="width" multiplier="0.8" id="Omb-NR-UUi"/>
+                            <constraint firstItem="4k0-es-eqB" firstAttribute="centerX" secondItem="Ged-ZY-65D" secondAttribute="centerX" id="WTo-7J-PtO"/>
                             <constraint firstItem="FAb-85-FKd" firstAttribute="centerX" secondItem="Ged-ZY-65D" secondAttribute="centerX" id="Zbb-OO-Lkn"/>
                             <constraint firstItem="FAb-85-FKd" firstAttribute="height" secondItem="Ged-ZY-65D" secondAttribute="height" multiplier="0.7" id="dug-ay-qRE"/>
+                            <constraint firstItem="4k0-es-eqB" firstAttribute="width" secondItem="zfY-xL-yvh" secondAttribute="width" id="lY2-p3-P2Q"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="53D-eL-Xq9"/>

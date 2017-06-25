@@ -21,13 +21,21 @@ final class HighScoresViewController: UIViewController {
   fileprivate var score = 0
   fileprivate var accuracy = 0
   
-  class func instantiate(score: Int, accuracy: Int, webservice: HighscoresAPI) -> HighScoresViewController {
+  fileprivate var onComplete: ((UIViewController) -> ())!
+  class func instantiate(score: Int, accuracy: Int, webservice: HighscoresAPI, onComplete: @escaping (UIViewController) -> ()) -> HighScoresViewController {
     let storyboard = UIStoryboard(name: "\(HighScoresViewController.self)", bundle: nil)
     let highscoresVC = storyboard.instantiateInitialViewController() as! HighScoresViewController
     highscoresVC.webservice = webservice
     highscoresVC.score = score
     highscoresVC.accuracy = accuracy
+    highscoresVC.onComplete = onComplete
     return highscoresVC
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    modalPresentationStyle = .custom
+    transitioningDelegate = self
   }
 }
 
@@ -38,6 +46,7 @@ extension HighScoresViewController {
     
     webservice.getHighscores { self.highscores = $0 }
   }
+  
 }
 
 // MARK: - UICollectionViewDataSource
@@ -83,5 +92,12 @@ extension HighScoresViewController: UIViewControllerTransitioningDelegate {
   
   func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     return BounceAnimationController()
+  }
+}
+
+// MARK: - @IBActions
+private extension HighScoresViewController {
+  @IBAction func playAgainTapped() {
+    onComplete(self)
   }
 }

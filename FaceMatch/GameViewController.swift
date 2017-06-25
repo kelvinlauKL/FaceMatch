@@ -102,15 +102,15 @@ extension GameViewController {
   
   func spawnEmotion() {
     guard numberOfSpawns < maxSpawns else {
-      let alertController = UIAlertController(title: "Round Over!", message: "You've got a score of \(score), with an accuracy of \(Int((Double(correct) / Double(maxSpawns)) * 100)) %", preferredStyle: .alert)
-      let goAgainAction = UIAlertAction(title: "Go Again!", style: .default, handler: { _ in
-        self.resetGame()
+      let accuracy = Int((Double(correct) / Double(maxSpawns)) * 100)
+      let highscoresVC = HighScoresViewController.instantiate(score: score, accuracy: accuracy, webservice: FakeWebservice(), onComplete: { [weak self] vc in
+        self?.resetGame()
+        vc.dismiss(animated: true, completion: nil)
       })
       
-      alertController.addAction(goAgainAction)
-      return present(alertController, animated: true) {
-        self.timer?.invalidate()
-      }
+      timer?.invalidate()
+      timer = nil
+      return present(highscoresVC, animated: true, completion: nil)
     }
     numberOfSpawns += 1
     let emotion = Emotion.random
@@ -177,7 +177,7 @@ extension GameViewController {
 // MARK: - AVCapturePhotoCaptureDelegate
 extension GameViewController: AVCapturePhotoCaptureDelegate {
   func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-    guard let sampleBuffer = photoSampleBuffer else { fatalError("sample buffer was nil") }
+    guard let sampleBuffer = photoSampleBuffer else { return }
     let imageData = UIImage.data(from: sampleBuffer, imageSize: CGSize(width: 400, height: 400))
     
     webservice.send(imageData: imageData) { result in
