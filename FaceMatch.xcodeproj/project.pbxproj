@@ -28,6 +28,8 @@
 		60CF1D801EFFD22300152C5A /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D7F1EFFD22300152C5A /* ScoreCell.swift */; };
 		60CF1D821EFFD30400152C5A /* FakeWebservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D811EFFD30400152C5A /* FakeWebservice.swift */; };
 		60CF1D841EFFD91000152C5A /* HighScoresReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D831EFFD91000152C5A /* HighScoresReusableView.swift */; };
+		60CF1D871EFFE34A00152C5A /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D861EFFE34A00152C5A /* DimmingPresentationController.swift */; };
+		60CF1D891EFFE36F00152C5A /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CF1D881EFFE36F00152C5A /* BounceAnimationController.swift */; };
 		CF9BAB79002C22698B4F2F77 /* Pods_FaceMatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEB5095F4B3E7F67C25DE2B /* Pods_FaceMatch.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		60CF1D7F1EFFD22300152C5A /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCell.swift; sourceTree = "<group>"; };
 		60CF1D811EFFD30400152C5A /* FakeWebservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeWebservice.swift; sourceTree = "<group>"; };
 		60CF1D831EFFD91000152C5A /* HighScoresReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoresReusableView.swift; sourceTree = "<group>"; };
+		60CF1D861EFFE34A00152C5A /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
+		60CF1D881EFFE36F00152C5A /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		CFEB5095F4B3E7F67C25DE2B /* Pods_FaceMatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceMatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				603B0EE51EFED034003DA506 /* AppDelegate.swift */,
+				60CF1D851EFFE33B00152C5A /* Custom Transitions */,
 				603B0F0C1EFF12CC003DA506 /* Extensions */,
 				603B0F091EFED7E2003DA506 /* Views */,
 				603B0EFA1EFED08E003DA506 /* Networking */,
@@ -189,6 +194,15 @@
 				60CF1D7B1EFFCFAC00152C5A /* GameplayAPI.swift */,
 			);
 			name = APIs;
+			sourceTree = "<group>";
+		};
+		60CF1D851EFFE33B00152C5A /* Custom Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				60CF1D861EFFE34A00152C5A /* DimmingPresentationController.swift */,
+				60CF1D881EFFE36F00152C5A /* BounceAnimationController.swift */,
+			);
+			name = "Custom Transitions";
 			sourceTree = "<group>";
 		};
 		CD99576EBF56DCFD79BBDC2A /* Pods */ = {
@@ -350,6 +364,8 @@
 				603B0F0B1EFED7F0003DA506 /* PreviewView.swift in Sources */,
 				60CF1D721EFFC7E200152C5A /* Score.swift in Sources */,
 				60CF1D681EFFBF4100152C5A /* HighScoresViewController.swift in Sources */,
+				60CF1D871EFFE34A00152C5A /* DimmingPresentationController.swift in Sources */,
+				60CF1D891EFFE36F00152C5A /* BounceAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
