@@ -35,6 +35,6 @@ extension FakeWebservice: HighscoresAPI {
 
 extension FakeWebservice: GameplayAPI {
   func send(imageData: Data, completion: @escaping (Result<(Emotion, Int)>) -> ()) {
-    completion(.success((Emotion.sad), 2))
+    completion(.success((Emotion.sad, 2)))
   }
 }

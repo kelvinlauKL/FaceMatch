@@ -21,14 +21,14 @@ final class GameViewController: UIViewController {
   
   @IBOutlet fileprivate var previewView: PreviewView! {
     didSet {
-      previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+      previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
       previewView.clipsToBounds = true
     }
   }
   
   fileprivate let session: AVCaptureSession = {
     let session = AVCaptureSession()
-    session.sessionPreset = AVCaptureSessionPresetPhoto
+    session.sessionPreset = AVCaptureSession.Preset.photo
     return session
   }()
   
@@ -66,7 +66,7 @@ extension GameViewController {
   }
   
   private func setupCamera() {
-    let frontCamera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
+    guard let frontCamera = AVCaptureDevice.default(AVCaptureDevice.DeviceType.builtInWideAngleCamera, for: .video, position: .front) else { fatalError("Could not access front camera.") }
     guard let input = try? AVCaptureDeviceInput(device: frontCamera) else { fatalError("back camera not available.") }
     session.addInput(input)
     session.addOutput(output)
@@ -100,7 +100,7 @@ extension GameViewController {
     CATransaction.commit()
   }
   
-  func spawnEmotion() {
+  @objc func spawnEmotion() {
     guard numberOfSpawns < maxSpawns else {
       let accuracy = Int((Double(correct) / Double(maxSpawns)) * 100)
       let highscoresVC = HighScoresViewController.instantiate(score: score, accuracy: accuracy, webservice: Webservice(), onComplete: { [weak self] vc in
@@ -176,7 +176,7 @@ extension GameViewController {
 
 // MARK: - AVCapturePhotoCaptureDelegate
 extension GameViewController: AVCapturePhotoCaptureDelegate {
-  func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+  func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
     guard let sampleBuffer = photoSampleBuffer else { return }
     let imageData = UIImage.data(from: sampleBuffer, imageSize: CGSize(width: 400, height: 400))
     
